@@ -1,71 +1,66 @@
 # Forest-AI-Lab
 
-# 基于无人机航拍图像的空地一体化森林碳汇监测系统
+本项目包含本地 YOLO26 视觉识别模块、FastAPI 接口和 Vue 3 前端。
 
-## 项目简介
+## 已实现功能
 
-本项目面向森林碳汇监测需求，设计一种融合无人机遥感、人工智能图像分析和地面环境感知的低成本监测系统。
+- 单张图片命令行检测：`AI/detect_image.py`
+- 电脑摄像头实时检测：`AI/detect_camera.py`
+- 图片上传识别 API：`AI/api_server.py`
+- Vue 图片上传、浏览器摄像头拍照识别与结果展示：`Web/`
+- RGB绿色植被覆盖率流程基线：`AI/vegetation_baseline.py`
 
-项目通过无人机获取植被图像，利用AI模型完成植被识别与面积分析，并结合地面传感数据实现森林碳汇估算与可视化展示。
+AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录模板与阶段验收记录。植被数据集交付规范位于 `AI/datasets/README.md`。
 
-## 技术路线
+AI模块V1工具：
 
-```text
-无人机航拍 → 图像处理 → AI植被识别 → 面积计算
-                                         ↓
-地面环境感知 → 空地数据融合 ─────────→ 碳汇估算 → Web系统展示
-```
+- `AI/dataset_check.py`：检查数据损坏、漏标、类别/坐标错误和跨集合重复。
+- `AI/train_segmentation.py`：训练植被分割基线。
+- `AI/evaluate_segmentation.py`：在验证集或独立测试集导出指标。
+- `AI/predict_segmentation.py`：使用训练权重完成图片、视频或摄像头推理。
+- `AI/experiment_registry.csv`：实验总台账。
 
-## 项目结构
+## 启动视觉 API
 
-- `AI`：人工智能算法与模型
-- `STM32`：地面监测终端
-- `Web`：系统展示平台
-- `docs`：项目文档
-
-## 团队
-
-- 负责人：王思丹
-- 成员：刘韵诗、梅族子
-
-## AI第一阶段成果
-
-- [x] Python、PyTorch、OpenCV和Ultralytics环境
-- [x] 通用YOLO图片及摄像头视觉Demo
-- [x] RGB绿色植被覆盖率流程基线
-- [x] 数据集质量与跨集合泄漏检查
-- [x] 分割模型训练、验证和预测入口
-- [x] 实验台账、技术路线、接口协议和阶段验收材料
-- [ ] 真实航拍数据集准备与标注
-- [ ] 项目专用分割模型训练与独立测试
-
-AI阶段资料位于 `docs/`；数据集交付规范位于 `AI/datasets/README.md`。
-
-## AI环境安装
+在项目根目录执行：
 
 ```powershell
-py -V:3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r .\AI\requirements-ai.txt
-python -m pip check
+.\.venv\Scripts\python.exe .\AI\api_server.py
 ```
 
-## 运行基础视觉Demo
+正式网页：`http://127.0.0.1:8000`  
+接口文档：`http://127.0.0.1:8000/docs`
+
+`Web/dist` 已由 FastAPI 直接提供，因此日常使用只需启动这一条 Python 命令。
+
+进入网页后可选择“上传图片”或“使用摄像头”。摄像头模式需要允许浏览器访问摄像头，然后点击“识别当前画面”。
+
+## 前端开发模式（可选）
+
+安装 Node.js 20.19+ 或 22.12+，然后在 `Web` 目录执行：
 
 ```powershell
-python .\AI\detect_image.py tree.png
-python .\AI\detect_camera.py
+pnpm install
+pnpm dev
 ```
 
-摄像头窗口按小写 `q` 退出，也可在终端按 `Ctrl+C`。
+开发网页地址：`http://127.0.0.1:5173`。修改完成后运行 `pnpm build`，正式网页会更新到 8000 端口。
 
-## 运行森林主题植被流程基线
+## 运行图片检测
+
+```powershell
+python .\AI\detect_image.py bus.jpg
+```
+
+图片可放入 `AI/input/`，结果保存到 `AI/runs/`。
+
+## 运行森林主题植被基线
 
 ```powershell
 python .\AI\vegetation_baseline.py tree.png --name EXP-20260815-01
 ```
 
-该程序使用RGB Excess Green（ExG）验证植被提取和覆盖率统计流程，不是最终训练模型，不能代替标准NDVI。当前测试图片为插画，仅作为流程验证；正式论文实验必须使用真实航拍图、人工标注和独立测试集。
+该程序使用RGB Excess Green（ExG）验证植被提取和覆盖率统计流程，不是最终训练模型，也不能代替标准NDVI。正式论文实验必须使用真实航拍图、人工标注和独立测试集。
 
 ## 数据集到位后的标准流程
 
@@ -75,13 +70,12 @@ python .\AI\train_segmentation.py --data .\AI\config\vegetation_v1.yaml --device
 python .\AI\evaluate_segmentation.py --model .\AI\runs\segment\EXP-YYYYMMDD-SEG-V1\weights\best.pt --split test
 ```
 
-当前电脑使用CPU版PyTorch，正式训练建议使用NVIDIA GPU，并在实验记录中保存依赖、设备、随机种子和完整参数。
+当前电脑使用CPU版PyTorch。正式训练建议换用NVIDIA GPU环境，并在实验记录中保存依赖、设备、随机种子和完整参数。
 
-## 项目后续进度
+## 运行摄像头检测
 
-- [ ] STM32采集模块
-- [ ] 空地数据融合
-- [ ] Web系统正式集成
-- [ ] 论文实验与投稿
-- [ ] 软件著作权和专利材料
-- [ ] 项目结题
+```powershell
+python .\AI\detect_camera.py
+```
+
+点击摄像头窗口后按小写 `q` 退出；也可以在终端按 `Ctrl+C`。

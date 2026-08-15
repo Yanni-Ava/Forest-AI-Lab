@@ -214,6 +214,12 @@ AI/runs/
 AI/weights/*.pt
 AI/datasets/*
 !AI/datasets/README.md
+data/*.db
+data/*.db-journal
+data/*.log
+Web/node_modules/
+Web/.vite/
+Web/.vscode/
 
 # Marimo
 marimo/_static/
