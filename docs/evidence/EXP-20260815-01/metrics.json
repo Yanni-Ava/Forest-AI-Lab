@@ -1,0 +1,14 @@
+{
+  "experiment": "EXP-20260815-01",
+  "created_at": "2026-08-15T05:51:06.174197+00:00",
+  "method": "RGB Excess Green (ExG) + Otsu threshold",
+  "source_image": "D:\\Forest-AI-Lab\\AI\\input\\tree.png",
+  "width": 2160,
+  "height": 1214,
+  "threshold": 100.0,
+  "vegetation_pixels": 1310138,
+  "total_pixels": 2622240,
+  "vegetation_coverage": 0.499626,
+  "vegetation_coverage_pct": 49.96,
+  "limitations": "Baseline only; not a trained segmentation model and not valid NDVI."
+}

@@ -209,6 +209,12 @@ tempCodeRunnerFile.py
 # PyPI configuration file
 .pypirc
 
+# Forest AI generated assets
+AI/runs/
+AI/weights/*.pt
+AI/datasets/*
+!AI/datasets/README.md
+
 # Marimo
 marimo/_static/
 marimo/_lsp/

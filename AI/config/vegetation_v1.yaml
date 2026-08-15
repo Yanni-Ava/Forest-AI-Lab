@@ -1,0 +1,10 @@
+path: ../datasets/vegetation_v1
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: tree
+  1: grass
+  2: bare_land
+  3: other
