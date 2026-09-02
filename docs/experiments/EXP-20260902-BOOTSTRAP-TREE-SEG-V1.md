@@ -81,6 +81,15 @@ AI/runs/segment_eval/EXP-20260902-BOOTSTRAP-TREE-SEG-V1-test/metrics.json
 
 补充验证：使用训练后的 `best.pt` 对 `AI/input/tree.png` 做推理时，低置信度阈值可输出检测结果，但会出现大量重复/误检，说明当前权重已经具备可运行性，但仍需要真实标注数据和阈值优化后才能用于正式展示。
 
+## Demo 接入
+
+已将本实验产出的 `best.pt` 接入 `AI/api_server.py`：
+
+- 本地存在该权重时，API 优先使用 bootstrap 树木分割模型。
+- 权重不存在时，API 自动回退到通用 `yolo26n.pt`，避免队友拉取代码后 demo 无法启动。
+- 前端 Vue demo 仍调用原 `/detect` 接口，不需要修改前端调用方式。
+- 本地接口验证通过：`/api/health` 返回 `model=best.pt`，上传 `tree.png` 返回 `detection_count=20`。
+
 ## 下一步
 
 1. 接入真实 `dataset_v1` 或校园/公开森林图片。

@@ -2,3 +2,4 @@ experiment_id,date,owner,stage,dataset,model,purpose,status,primary_metric,resul
 EXP-20260815-01,2026-08-15,王思丹,流程基线,tree.png,ExG+Otsu,验证RGB植被提取与覆盖率统计流程,completed,coverage=49.96%,docs/evidence/EXP-20260815-01,插画流程验证；非训练模型；非NDVI
 EXP-20260902-BATCH-V1,2026-09-02,王思丹,批量实验流程,AI/input,yolo26n.pt+ExG+Otsu,验证批量图片识别与植被覆盖率记录流程,completed,tree_coverage=49.96%; images=3,AI/runs/batch_experiments/EXP-20260902-BATCH-V1,通用YOLO对森林树图无检出；当前结果用于流程验证；正式训练依赖dataset_v1
 EXP-20260902-BOOTSTRAP-TREE-SEG-V1,2026-09-02,王思丹,模型训练,AI/datasets/vegetation_v1,yolo26n-seg.pt,用伪标注植被数据跑通YOLO分割模型训练流程,completed,Mask mAP50=0.3553; Mask Recall=0.9,AI/runs/segment/EXP-20260902-BOOTSTRAP-TREE-SEG-V1,bootstrap伪标注训练；可证明训练流程和权重产出；不作为正式论文精度
+EXP-20260902-DEMO-TRAINED-MODEL,2026-09-02,王思丹,Demo接入,AI/input/tree.png,best.pt,将bootstrap训练权重接入本地API和Vue展示Demo,completed,detection_count=20; inference_ms=43.83,AI/runs/api,本地API优先使用训练权重；无权重时回退通用YOLO

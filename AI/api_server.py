@@ -16,7 +16,20 @@ from ultralytics import YOLO
 
 
 AI_DIR = Path(__file__).resolve().parent
-MODEL_PATH = AI_DIR / "weights" / "yolo26n.pt"
+TRAINED_SEGMENT_MODEL_PATH = (
+    AI_DIR
+    / "runs"
+    / "segment"
+    / "EXP-20260902-BOOTSTRAP-TREE-SEG-V1"
+    / "weights"
+    / "best.pt"
+)
+GENERAL_DETECT_MODEL_PATH = AI_DIR / "weights" / "yolo26n.pt"
+MODEL_PATH = TRAINED_SEGMENT_MODEL_PATH if TRAINED_SEGMENT_MODEL_PATH.is_file() else GENERAL_DETECT_MODEL_PATH
+MODEL_KIND = "bootstrap_tree_segmentation" if MODEL_PATH == TRAINED_SEGMENT_MODEL_PATH else "general_detection"
+CONFIDENCE_THRESHOLD = 0.005 if MODEL_KIND == "bootstrap_tree_segmentation" else 0.25
+IMAGE_SIZE = 416 if MODEL_KIND == "bootstrap_tree_segmentation" else 640
+MAX_DETECTIONS = 20 if MODEL_KIND == "bootstrap_tree_segmentation" else 300
 RESULTS_DIR = AI_DIR / "runs" / "api"
 WEB_DIST_DIR = AI_DIR.parent / "Web" / "dist"
 DATA_DIR = AI_DIR.parent / "data"
@@ -164,7 +177,11 @@ def health() -> dict[str, str | bool]:
     return {
         "status": "ok",
         "model": MODEL_PATH.name,
+        "model_path": str(MODEL_PATH),
+        "model_kind": MODEL_KIND,
         "model_exists": MODEL_PATH.is_file(),
+        "confidence_threshold": str(CONFIDENCE_THRESHOLD),
+        "image_size": str(IMAGE_SIZE),
         "device": "cpu",
     }
 
@@ -188,7 +205,14 @@ async def detect(
         raise HTTPException(status_code=400, detail="The uploaded file is not a valid image.")
 
     with model_lock:
-        result = model.predict(source=image, device="cpu", verbose=False)[0]
+        result = model.predict(
+            source=image,
+            device="cpu",
+            imgsz=IMAGE_SIZE,
+            conf=CONFIDENCE_THRESHOLD,
+            max_det=MAX_DETECTIONS,
+            verbose=False,
+        )[0]
 
     detections: list[dict[str, object]] = []
     for box in result.boxes:

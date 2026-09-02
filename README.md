@@ -46,6 +46,8 @@ AI模块V1工具：
 
 进入网页后可选择“上传图片”或“使用摄像头”。摄像头模式需要允许浏览器访问摄像头，然后点击“识别当前画面”。
 
+本地如果存在 `AI/runs/segment/EXP-20260902-BOOTSTRAP-TREE-SEG-V1/weights/best.pt`，API 会优先使用这版 bootstrap 树木分割模型；如果不存在，则自动退回 `AI/weights/yolo26n.pt` 通用检测模型，保证 demo 仍可运行。
+
 ## 前端开发模式（可选）
 
 安装 Node.js 20.19+ 或 22.12+，然后在 `Web` 目录执行：
