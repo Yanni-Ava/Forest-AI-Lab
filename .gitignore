@@ -213,6 +213,7 @@ tempCodeRunnerFile.py
 AI/runs/
 runs/
 AI/weights/*.pt
+AI/input/public_forest_sources/
 AI/datasets/*
 !AI/datasets/README.md
 !AI/datasets/vegetation_v1/
@@ -228,6 +229,15 @@ AI/datasets/vegetation_v1/images/**/*
 AI/datasets/vegetation_v1/labels/**/*
 !AI/datasets/vegetation_v1/images/**/.gitkeep
 !AI/datasets/vegetation_v1/labels/**/.gitkeep
+!AI/datasets/vegetation_v2_public/
+!AI/datasets/vegetation_v2_public/**/
+!AI/datasets/vegetation_v2_public/README.md
+!AI/datasets/vegetation_v2_public/DATASET_CARD.md
+!AI/datasets/vegetation_v2_public/classes.txt
+!AI/datasets/vegetation_v2_public/metadata.csv
+!AI/datasets/vegetation_v2_public/sources/*.md
+AI/datasets/vegetation_v2_public/images/**/*
+AI/datasets/vegetation_v2_public/labels/**/*
 data/*.db
 data/*.db-journal
 data/*.log
