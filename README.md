@@ -7,7 +7,7 @@
 - 单张图片命令行检测：`AI/detect_image.py`
 - 电脑摄像头实时检测：`AI/detect_camera.py`
 - 图片上传识别 API：`AI/api_server.py`
-- Vue 图片上传、浏览器摄像头拍照识别与结果展示：`Web/`
+- Vue 图片上传、浏览器摄像头拍照识别与结果展示：`Web/`（后续展示主线）
 - RGB绿色植被覆盖率流程基线：`AI/vegetation_baseline.py`
 
 AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录模板与阶段验收记录。植被数据集交付规范位于 `AI/datasets/README.md`。
@@ -47,6 +47,8 @@ AI模块V1工具：
 进入网页后可选择“上传图片”或“使用摄像头”。摄像头模式需要允许浏览器访问摄像头，然后点击“识别当前画面”。
 
 本地如果存在 `AI/runs/segment/EXP-20260902-BOOTSTRAP-TREE-SEG-V1/weights/best.pt`，API 会优先使用这版 bootstrap 树木分割模型；如果不存在，则自动退回 `AI/weights/yolo26n.pt` 通用检测模型，保证 demo 仍可运行。
+
+项目展示主线统一为 Vue + FastAPI。Streamlit 页面仅作为早期原型材料保留，不作为后续主线系统。
 
 ## 前端开发模式（可选）
 

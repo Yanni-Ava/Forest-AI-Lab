@@ -218,6 +218,7 @@ AI/datasets/*
 !AI/datasets/vegetation_v1/
 !AI/datasets/vegetation_v1/**/
 !AI/datasets/vegetation_v1/README.md
+!AI/datasets/vegetation_v1/DATASET_CARD.md
 !AI/datasets/vegetation_v1/classes.txt
 !AI/datasets/vegetation_v1/metadata.csv
 !AI/datasets/vegetation_v1/metadata_template.csv
