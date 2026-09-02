@@ -7,6 +7,7 @@
 | 通用 YOLO26n | `AI/weights/yolo26n.pt` | 通用目标检测，可兜底 | 回退模型 |
 | Bootstrap tree segmentation | `EXP-20260902-BOOTSTRAP-TREE-SEG-V1` | 展示相对稳定，已接入 API | 是 |
 | Public tree segmentation Alpha | `EXP-20260902-PUBLIC-TREE-SEG-ALPHA` | 已完成训练，但测试指标偏低 | 暂不接入 |
+| Review subset tree segmentation Alpha | `EXP-20260902-REVIEW-SUBSET-TREE-SEG-ALPHA` | 筛选样本后指标提升，但测试集太小且仍为伪标注 | 暂不接入 |
 
 ## 当前选择
 
@@ -21,6 +22,7 @@ AI/runs/segment/EXP-20260902-BOOTSTRAP-TREE-SEG-V1/weights/best.pt
 1. 已完成 API 接入验证。
 2. Demo 展示更稳定。
 3. Public Alpha 模型虽然数据来源更丰富，但伪标注质量不足，测试指标偏低。
+4. Review subset 模型证明筛选样本有效，但还未达到稳定替换条件。
 
 ## 后续替换条件
 
@@ -31,4 +33,3 @@ AI/runs/segment/EXP-20260902-BOOTSTRAP-TREE-SEG-V1/weights/best.pt
 3. 测试集 Mask mAP50 和预测可视化明显优于当前模型。
 4. Web/API 上传图片验证通过。
 5. 实验记录和 GitHub 提交同步完成。
-

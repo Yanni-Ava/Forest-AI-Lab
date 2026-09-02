@@ -1,0 +1,19 @@
+image_id,split,review_status,quality_level,decision,issue,next_action
+VEG_PUBLIC_0001,train,visual_reviewed,good,candidate_for_manual_refine,Tree/vegetation region mostly covered; boundary needs trimming,Keep and manually refine boundary
+VEG_PUBLIC_0002,train,visual_reviewed,medium,candidate_for_manual_refine,Large forest area covered but sky/edge boundary is coarse,Keep and manually refine boundary
+VEG_PUBLIC_0003,train,visual_reviewed,good,candidate_for_manual_refine,Forest area mostly covered; trunks/ground mixed with vegetation,Keep and manually refine boundary
+VEG_PUBLIC_0004,train,visual_reviewed,poor,hold_out,Cloud/fog and non-vegetation areas confuse pseudo label,Do not use before manual correction
+VEG_PUBLIC_0005,train,visual_reviewed,medium,candidate_for_manual_refine,Aerial forest region detected but bare land boundary is rough,Keep and manually refine boundary
+VEG_PUBLIC_0006,train,visual_reviewed,poor,hold_out,Fog/sky/pale background heavily included,Do not use before manual correction
+VEG_PUBLIC_0007,train,visual_reviewed,good,candidate_for_manual_refine,Augmented version of usable forest scene,Keep and manually refine boundary
+VEG_PUBLIC_0008,train,visual_reviewed,medium,candidate_for_manual_refine,Augmented forest overview; boundary coarse,Keep and manually refine boundary
+VEG_PUBLIC_0009,train,visual_reviewed,good,candidate_for_manual_refine,Augmented coniferous scene; usable for tree class,Keep and manually refine boundary
+VEG_PUBLIC_0010,train,visual_reviewed,poor,hold_out,Cloud/fog and non-vegetation areas confuse pseudo label,Do not use before manual correction
+VEG_PUBLIC_0011,train,visual_reviewed,medium,candidate_for_manual_refine,Aerial forest with rough edge and bare land confusion,Keep and manually refine boundary
+VEG_PUBLIC_0012,train,visual_reviewed,poor,hold_out,Fog/sky/pale background heavily included,Do not use before manual correction
+VEG_PUBLIC_0013,val,visual_reviewed,good,candidate_for_manual_refine,Augmented usable forest scene,Keep and manually refine boundary
+VEG_PUBLIC_0014,val,visual_reviewed,medium,candidate_for_manual_refine,Augmented forest overview; boundary coarse,Keep and manually refine boundary
+VEG_PUBLIC_0015,val,visual_reviewed,good,candidate_for_manual_refine,Augmented coniferous scene; usable for tree class,Keep and manually refine boundary
+VEG_PUBLIC_0016,test,visual_reviewed,poor,hold_out,Cloud/fog and non-vegetation areas confuse pseudo label,Do not use for formal test before correction
+VEG_PUBLIC_0017,test,visual_reviewed,medium,candidate_for_manual_refine,Aerial forest with rough edge and bare land confusion,Keep and manually refine boundary
+VEG_PUBLIC_0018,test,visual_reviewed,poor,hold_out,Fog/sky/pale background heavily included,Do not use for formal test before correction

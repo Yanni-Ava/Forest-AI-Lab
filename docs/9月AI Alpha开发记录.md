@@ -100,3 +100,37 @@ AI Alpha Demo V0.1 已具备：
 已完成 `EXP-20260902-PUBLIC-TREE-SEG-ALPHA` 训练与测试集评估。
 
 测试结果显示，该模型指标偏低，暂不替换当前 Demo 主模型。当前结论是：公开森林图能提升数据来源丰富度，但伪标注质量不足，下一步必须进行人工标注或校园实拍数据补充。
+
+## 2026-09-02 进展：伪标注质量检查
+
+已生成 `vegetation_v2_public` 标注总览图：
+
+```text
+docs/evidence/0902_annotation_review/vegetation_v2_public_label_contact_sheet.jpg
+```
+
+已形成人工修标优先级清单：
+
+```text
+AI/datasets/vegetation_v2_public/manual_review_v0.1.csv
+```
+
+结论：12 张图片可作为优先人工修标样例，6 张图片因雾、天空或浅色背景误标严重，暂缓进入正式训练。
+
+## 2026-09-02 进展：Review Subset 训练
+
+已从 `vegetation_v2_public` 中筛选 12 张较适合人工修标的样例，生成：
+
+```text
+AI/datasets/vegetation_v2_public_review_subset
+```
+
+已完成训练实验：
+
+```text
+EXP-20260902-REVIEW-SUBSET-TREE-SEG-ALPHA
+```
+
+测试集 Mask mAP50 约 0.165，相比全量公开伪标注模型的 0.008 有提升，但仍不足以替换 Demo 主模型。
+
+结论：筛选样本方向有效，下一步继续人工修标。

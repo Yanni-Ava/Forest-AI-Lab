@@ -44,6 +44,8 @@
 - 已完成 `vegetation_v2_public` 数据集检查，结果通过。
 - 已完成 `EXP-20260902-PUBLIC-TREE-SEG-ALPHA` 模型训练与测试评估。
 - 已建立 `docs/AI模型选择记录.md`，当前 Demo 暂不替换为 Public Alpha 模型。
+- 已完成 `vegetation_v2_public` 伪标注总览图与人工修标优先级清单。
+- 已完成 `vegetation_v2_public_review_subset` 筛选子集，并训练 Review Subset Alpha 模型。
 
 当前判断：9 月模型优化已经启动，但公开图片伪标注训练效果不稳定，下一步重点转向人工标注检查和校园/实地图片补充。
 

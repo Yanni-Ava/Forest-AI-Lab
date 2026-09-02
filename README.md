@@ -19,6 +19,7 @@ AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录�
 - `docs/9月AI实验推进计划.md`：9月数据集、批量实验和模型优化计划。
 - `docs/9月AI Alpha开发记录.md`：9月 AI Alpha Demo 开发与联调记录。
 - `docs/AI模型选择记录.md`：记录当前 Demo 主模型选择和模型替换条件。
+- `docs/9月人工标注规范.md`：公开森林图和后续校园图的人工修标标准。
 - `docs/Web展示主线说明_V0.1.md`：明确 Vue + FastAPI 为后续系统展示主线。
 - `STM32/docs/sensor_data_protocol_v0.1.md`：地面传感器模拟数据协议。
 - `AI/experiment_registry.csv`：实验总台账。
