@@ -11,6 +11,7 @@
 - 可人工编辑的 LabelMe 标注任务：`AI/annotation_tasks/vegetation_alpha_v04_labelme`
 - YOLO 标注转 LabelMe 工具：`AI/export_yolo_to_labelme.py`
 - LabelMe 标注导回 YOLO 工具：`AI/import_labelme_to_yolo.py`
+- LabelMe 修标任务总览工具：`AI/visualize_labelme_tasks.py`
 - 导回后的训练配置：`AI/config/vegetation_v2_public_human_corrected_v04.yaml`
 
 ## 人工修标怎么做
@@ -22,6 +23,20 @@
 5. 如果某个标注完全错误，就删除这个形状。
 6. 如果明显漏掉大块树冠或林地，就新增 polygon，标签写 `tree`。
 7. 保存 JSON。
+
+## 快速查看修标任务
+
+如果想先整体看一眼当前 10 张图的 polygon 情况，可执行：
+
+```powershell
+python .\AI\visualize_labelme_tasks.py
+```
+
+生成结果：
+
+```text
+docs/evidence/0902_labelme_annotation_tasks/labelme_task_contact_sheet.jpg
+```
 
 ## 导回训练集
 

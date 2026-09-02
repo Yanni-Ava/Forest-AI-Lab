@@ -7,6 +7,7 @@
 ## 文件位置
 
 - 标注任务目录：`AI/annotation_tasks/vegetation_alpha_v04_labelme`
+- 修标任务总览图：`docs/evidence/0902_labelme_annotation_tasks/labelme_task_contact_sheet.jpg`
 - 训练集任务：6 个 JSON
 - 验证集任务：3 个 JSON
 - 测试集任务：1 个 JSON
@@ -22,6 +23,7 @@
 
 - 已完成：LabelMe 修标任务包生成。
 - 已完成：YOLO 与 LabelMe 双向转换脚本准备。
+- 已完成：LabelMe 修标任务总览图生成。
 - 未完成：人工逐张修正 polygon。
 - 待完成：导回修正后的 V0.4 数据集并重新训练。
 
