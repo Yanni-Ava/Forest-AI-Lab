@@ -26,6 +26,8 @@ AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录�
 - `docs/9月LabelMe人工精修流程.md`：LabelMe 人工修标、导回训练集和 Alpha V0.4 训练流程。
 - `docs/9月数据接收与验收标准.md`：数据同学提交图片后的负责人验收标准。
 - `docs/9月数据同学对接消息模板.md`：给数据模块同学的对接话术。
+- `docs/9月负责人阶段验收汇总.md`：负责人9月阶段可验收成果汇总。
+- `docs/9月负责人汇报口径.md`：面向老师/队友的阶段汇报话术。
 - `docs/experiments/EXP-20260902-AUTO-REFINED-TREE-SEG-ALPHA-V02.md`：自动修标 Alpha V0.2 训练实验记录。
 - `docs/experiments/EXP-20260902-HUMAN-REVIEWED-SEED-TREE-SEG-ALPHA-V03.md`：人工审核种子集 Alpha V0.3 训练实验记录。
 - `docs/experiments/EXP-20260902-HUMAN-CORRECTED-TREE-SEG-ALPHA-V04.md`：LabelMe 修标导回后的 Alpha V0.4 训练实验记录。
