@@ -1,2 +1,3 @@
 experiment_id,date,owner,stage,dataset,model,purpose,status,primary_metric,result_path,notes
 EXP-20260815-01,2026-08-15,王思丹,流程基线,tree.png,ExG+Otsu,验证RGB植被提取与覆盖率统计流程,completed,coverage=49.96%,docs/evidence/EXP-20260815-01,插画流程验证；非训练模型；非NDVI
+EXP-20260902-BATCH-V1,2026-09-02,王思丹,批量实验流程,AI/input,yolo26n.pt+ExG+Otsu,验证批量图片识别与植被覆盖率记录流程,completed,tree_coverage=49.96%; images=3,AI/runs/batch_experiments/EXP-20260902-BATCH-V1,通用YOLO对森林树图无检出；当前结果用于流程验证；正式训练依赖dataset_v1
