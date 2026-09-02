@@ -1,0 +1,11 @@
+﻿split,image,label,segments,review_status,notes
+train,VEG_PUBLIC_0001.jpg,VEG_PUBLIC_0001.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+train,VEG_PUBLIC_0002.jpg,VEG_PUBLIC_0002.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+train,VEG_PUBLIC_0003.jpg,VEG_PUBLIC_0003.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+train,VEG_PUBLIC_0007.jpg,VEG_PUBLIC_0007.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+train,VEG_PUBLIC_0008.jpg,VEG_PUBLIC_0008.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+train,VEG_PUBLIC_0009.jpg,VEG_PUBLIC_0009.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+val,VEG_PUBLIC_0013.jpg,VEG_PUBLIC_0013.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+val,VEG_PUBLIC_0014.jpg,VEG_PUBLIC_0014.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+val,VEG_PUBLIC_0015.jpg,VEG_PUBLIC_0015.txt,1,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.
+test,VEG_PUBLIC_0017.jpg,VEG_PUBLIC_0017.txt,3,pending_human_review,Check whether the green mask covers tree/vegetation areas accurately.

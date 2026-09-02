@@ -154,3 +154,21 @@ EXP-20260902-AUTO-REFINED-TREE-SEG-ALPHA-V02
 测试结果显示，自动修标后的可视化更干净，但模型指标没有提升，说明自动规则不能替代人工修标。
 
 当前结论：保留自动修标脚本作为辅助工具，下一步继续人工修标。
+
+## 2026-09-02 进展：Human Reviewed Seed Alpha V0.3
+
+已建立人工审核种子集：
+
+```text
+AI/datasets/vegetation_v2_public_human_reviewed_seed
+```
+
+该数据集包含 10 张视觉检查后保留的样例，划分为 train 6、val 3、test 1。
+
+训练实验：
+
+```text
+EXP-20260902-HUMAN-REVIEWED-SEED-TREE-SEG-ALPHA-V03
+```
+
+测试结果未达到替换 Demo 主模型的标准。结论是：只筛选好图还不够，下一步需要逐点人工修正多边形边界。

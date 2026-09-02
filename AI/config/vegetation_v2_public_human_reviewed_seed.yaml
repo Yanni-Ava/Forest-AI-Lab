@@ -1,0 +1,7 @@
+path: D:/Forest-AI-Lab/AI/datasets/vegetation_v2_public_human_reviewed_seed
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: tree

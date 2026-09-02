@@ -24,6 +24,7 @@ AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录�
 - `docs/9月模型对比阶段结论.md`：汇总多版模型训练效果和当前选择原因。
 - `docs/9月人工标注规范.md`：公开森林图和后续校园图的人工修标标准。
 - `docs/experiments/EXP-20260902-AUTO-REFINED-TREE-SEG-ALPHA-V02.md`：自动修标 Alpha V0.2 训练实验记录。
+- `docs/experiments/EXP-20260902-HUMAN-REVIEWED-SEED-TREE-SEG-ALPHA-V03.md`：人工审核种子集 Alpha V0.3 训练实验记录。
 - `docs/Web展示主线说明_V0.1.md`：明确 Vue + FastAPI 为后续系统展示主线。
 - `STM32/docs/sensor_data_protocol_v0.1.md`：地面传感器模拟数据协议。
 - `AI/experiment_registry.csv`：实验总台账。
