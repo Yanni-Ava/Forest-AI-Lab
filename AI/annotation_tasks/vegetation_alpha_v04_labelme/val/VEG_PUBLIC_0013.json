@@ -1,0 +1,125 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "tree",
+      "points": [
+        [
+          0.0,
+          107.0
+        ],
+        [
+          0.0,
+          250.0
+        ],
+        [
+          26.0,
+          254.0
+        ],
+        [
+          0.0,
+          286.0
+        ],
+        [
+          0.0,
+          448.0
+        ],
+        [
+          46.0,
+          418.0
+        ],
+        [
+          118.0,
+          433.0
+        ],
+        [
+          130.0,
+          401.0
+        ],
+        [
+          158.0,
+          441.0
+        ],
+        [
+          215.0,
+          398.0
+        ],
+        [
+          218.0,
+          427.0
+        ],
+        [
+          291.0,
+          449.0
+        ],
+        [
+          387.0,
+          444.0
+        ],
+        [
+          387.0,
+          409.0
+        ],
+        [
+          453.0,
+          443.0
+        ],
+        [
+          499.0,
+          405.0
+        ],
+        [
+          501.0,
+          442.0
+        ],
+        [
+          480.0,
+          443.0
+        ],
+        [
+          523.0,
+          429.0
+        ],
+        [
+          506.0,
+          366.0
+        ],
+        [
+          534.0,
+          428.0
+        ],
+        [
+          639.0,
+          429.0
+        ],
+        [
+          639.0,
+          372.0
+        ],
+        [
+          612.0,
+          375.0
+        ],
+        [
+          639.0,
+          354.0
+        ],
+        [
+          639.0,
+          107.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "D:\\Forest-AI-Lab\\AI\\datasets\\vegetation_v2_public_human_reviewed_seed\\images\\val\\VEG_PUBLIC_0013.jpg",
+  "imageData": null,
+  "imageHeight": 640,
+  "imageWidth": 640,
+  "description": "Exported from YOLO segmentation. Manually refine polygon boundaries before importing back."
+}

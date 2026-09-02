@@ -1,0 +1,121 @@
+{
+  "version": "5.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "tree",
+      "points": [
+        [
+          0.0,
+          191.0
+        ],
+        [
+          0.0,
+          353.0
+        ],
+        [
+          26.0,
+          366.0
+        ],
+        [
+          0.0,
+          389.0
+        ],
+        [
+          0.0,
+          532.0
+        ],
+        [
+          639.0,
+          532.0
+        ],
+        [
+          639.0,
+          285.0
+        ],
+        [
+          612.0,
+          274.0
+        ],
+        [
+          639.0,
+          267.0
+        ],
+        [
+          639.0,
+          210.0
+        ],
+        [
+          534.0,
+          211.0
+        ],
+        [
+          506.0,
+          273.0
+        ],
+        [
+          523.0,
+          210.0
+        ],
+        [
+          480.0,
+          192.0
+        ],
+        [
+          499.0,
+          234.0
+        ],
+        [
+          453.0,
+          196.0
+        ],
+        [
+          387.0,
+          230.0
+        ],
+        [
+          387.0,
+          195.0
+        ],
+        [
+          291.0,
+          190.0
+        ],
+        [
+          218.0,
+          212.0
+        ],
+        [
+          215.0,
+          241.0
+        ],
+        [
+          158.0,
+          198.0
+        ],
+        [
+          130.0,
+          238.0
+        ],
+        [
+          118.0,
+          206.0
+        ],
+        [
+          46.0,
+          221.0
+        ]
+      ],
+      "group_id": null,
+      "description": "",
+      "shape_type": "polygon",
+      "flags": {},
+      "mask": null
+    }
+  ],
+  "imagePath": "D:\\Forest-AI-Lab\\AI\\datasets\\vegetation_v2_public_human_reviewed_seed\\images\\train\\VEG_PUBLIC_0001.jpg",
+  "imageData": null,
+  "imageHeight": 640,
+  "imageWidth": 640,
+  "description": "Exported from YOLO segmentation. Manually refine polygon boundaries before importing back."
+}

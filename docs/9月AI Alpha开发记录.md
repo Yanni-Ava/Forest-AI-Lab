@@ -172,3 +172,15 @@ EXP-20260902-HUMAN-REVIEWED-SEED-TREE-SEG-ALPHA-V03
 ```
 
 测试结果未达到替换 Demo 主模型的标准。结论是：只筛选好图还不够，下一步需要逐点人工修正多边形边界。
+
+## 2026-09-02 进展：LabelMe 人工精修流程
+
+已将人工审核种子集导出为 LabelMe 可编辑 JSON，形成：
+
+```text
+AI/annotation_tasks/vegetation_alpha_v04_labelme
+```
+
+本轮生成 10 个修标任务文件，其中 train 6 个、val 3 个、test 1 个。后续人工修正 polygon 后，可通过 `AI/import_labelme_to_yolo.py` 导回 YOLO 数据集，并使用 `AI/config/vegetation_v2_public_human_corrected_v04.yaml` 训练 Alpha V0.4。
+
+当前结论：项目进入“人工修标—数据导回—模型再训练—指标对比”的模型优化闭环。
