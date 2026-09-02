@@ -12,12 +12,20 @@
 
 AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录模板与阶段验收记录。植被数据集交付规范位于 `AI/datasets/README.md`。
 
+阶段材料：
+
+- `docs/阶段验收记录_0815.md`：AI环境与基础视觉Demo验收。
+- `docs/阶段验收记录_0831.md`：8月图片识别流程与AI模块V1整合验收。
+- `docs/9月AI实验推进计划.md`：9月数据集、批量实验和模型优化计划。
+- `AI/experiment_registry.csv`：实验总台账。
+
 AI模块V1工具：
 
 - `AI/dataset_check.py`：检查数据损坏、漏标、类别/坐标错误和跨集合重复。
 - `AI/train_segmentation.py`：训练植被分割基线。
 - `AI/evaluate_segmentation.py`：在验证集或独立测试集导出指标。
 - `AI/predict_segmentation.py`：使用训练权重完成图片、视频或摄像头推理。
+- `AI/run_batch_experiment.py`：批量生成检测结果、植被覆盖率和实验汇总。
 - `AI/experiment_registry.csv`：实验总台账。
 
 ## 启动视觉 API
