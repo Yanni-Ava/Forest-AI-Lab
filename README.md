@@ -17,6 +17,8 @@ AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录�
 - `docs/阶段验收记录_0815.md`：AI环境与基础视觉Demo验收。
 - `docs/阶段验收记录_0831.md`：8月图片识别流程与AI模块V1整合验收。
 - `docs/9月AI实验推进计划.md`：9月数据集、批量实验和模型优化计划。
+- `docs/Web展示主线说明_V0.1.md`：明确 Vue + FastAPI 为后续系统展示主线。
+- `STM32/docs/sensor_data_protocol_v0.1.md`：地面传感器模拟数据协议。
 - `AI/experiment_registry.csv`：实验总台账。
 
 AI模块V1工具：

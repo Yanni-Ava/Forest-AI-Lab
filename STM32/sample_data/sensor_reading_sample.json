@@ -1,0 +1,9 @@
+{
+  "device_id": "STM32_TEST_001",
+  "recorded_at": "2026-08-31T10:00:00Z",
+  "temperature_c": 28.6,
+  "humidity_pct": 72.5,
+  "co2_ppm": 430,
+  "light_lux": 18500,
+  "soil_moisture_pct": 41.2
+}

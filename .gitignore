@@ -214,6 +214,16 @@ AI/runs/
 AI/weights/*.pt
 AI/datasets/*
 !AI/datasets/README.md
+!AI/datasets/vegetation_v1/
+!AI/datasets/vegetation_v1/**/
+!AI/datasets/vegetation_v1/README.md
+!AI/datasets/vegetation_v1/classes.txt
+!AI/datasets/vegetation_v1/metadata_template.csv
+!AI/datasets/vegetation_v1/sources/README.md
+AI/datasets/vegetation_v1/images/**/*
+AI/datasets/vegetation_v1/labels/**/*
+!AI/datasets/vegetation_v1/images/**/.gitkeep
+!AI/datasets/vegetation_v1/labels/**/.gitkeep
 data/*.db
 data/*.db-journal
 data/*.log
