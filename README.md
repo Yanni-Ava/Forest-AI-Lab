@@ -28,6 +28,7 @@ AI模块V1工具：
 - `AI/evaluate_segmentation.py`：在验证集或独立测试集导出指标。
 - `AI/predict_segmentation.py`：使用训练权重完成图片、视频或摄像头推理。
 - `AI/run_batch_experiment.py`：批量生成检测结果、植被覆盖率和实验汇总。
+- `AI/create_bootstrap_vegetation_dataset.py`：在真实标注不足时生成伪标注数据，用于训练流程验证。
 - `AI/experiment_registry.csv`：实验总台账。
 
 ## 启动视觉 API

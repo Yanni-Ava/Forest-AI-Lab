@@ -7,6 +7,7 @@ from ultralytics import YOLO
 
 AI_DIR = Path(__file__).resolve().parent
 DEFAULT_DATA = AI_DIR / "config" / "vegetation_v1.yaml"
+OUTPUT_DIR = AI_DIR / "runs" / "segment_eval"
 
 
 def parse_args() -> argparse.Namespace:
@@ -16,6 +17,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--split", choices=("val", "test"), default="test")
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument("--name", default="val")
     parser.add_argument("--output", help="Optional JSON metrics path.")
     return parser.parse_args()
 
@@ -30,7 +32,13 @@ def main() -> None:
         raise FileNotFoundError(f"Dataset config not found: {data_path}")
 
     metrics = YOLO(str(model_path)).val(
-        data=str(data_path), split=args.split, imgsz=args.imgsz, device=args.device
+        data=str(data_path),
+        split=args.split,
+        imgsz=args.imgsz,
+        device=args.device,
+        project=str(OUTPUT_DIR),
+        name=args.name,
+        exist_ok=True,
     )
     payload = {
         "model": str(model_path),

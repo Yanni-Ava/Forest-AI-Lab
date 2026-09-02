@@ -5,6 +5,3 @@ test: images/test
 
 names:
   0: tree
-  1: grass
-  2: bare_land
-  3: other

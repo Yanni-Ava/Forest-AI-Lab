@@ -211,6 +211,7 @@ tempCodeRunnerFile.py
 
 # Forest AI generated assets
 AI/runs/
+runs/
 AI/weights/*.pt
 AI/datasets/*
 !AI/datasets/README.md
@@ -218,8 +219,10 @@ AI/datasets/*
 !AI/datasets/vegetation_v1/**/
 !AI/datasets/vegetation_v1/README.md
 !AI/datasets/vegetation_v1/classes.txt
+!AI/datasets/vegetation_v1/metadata.csv
 !AI/datasets/vegetation_v1/metadata_template.csv
 !AI/datasets/vegetation_v1/sources/README.md
+!AI/datasets/vegetation_v1/sources/*.md
 AI/datasets/vegetation_v1/images/**/*
 AI/datasets/vegetation_v1/labels/**/*
 !AI/datasets/vegetation_v1/images/**/.gitkeep

@@ -14,7 +14,7 @@ RUNS_DIR = AI_DIR / "runs" / "segment"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train the vegetation segmentation baseline.")
     parser.add_argument("--data", default=str(DEFAULT_DATA))
-    parser.add_argument("--model", default="yolo26n-seg.pt")
+    parser.add_argument("--model", default=str(AI_DIR / "weights" / "yolo26n-seg.pt"))
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--batch", type=int, default=8)
