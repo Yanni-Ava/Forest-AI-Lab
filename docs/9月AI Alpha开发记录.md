@@ -134,3 +134,23 @@ EXP-20260902-REVIEW-SUBSET-TREE-SEG-ALPHA
 测试集 Mask mAP50 约 0.165，相比全量公开伪标注模型的 0.008 有提升，但仍不足以替换 Demo 主模型。
 
 结论：筛选样本方向有效，下一步继续人工修标。
+
+## 2026-09-02 进展：Auto Refined Alpha V0.2
+
+已建立自动修标数据集：
+
+```text
+AI/datasets/vegetation_v2_public_auto_refined
+```
+
+自动修标方法使用更严格的 HSV + ExG 条件，减少天空、雾和浅色背景误标。
+
+训练实验：
+
+```text
+EXP-20260902-AUTO-REFINED-TREE-SEG-ALPHA-V02
+```
+
+测试结果显示，自动修标后的可视化更干净，但模型指标没有提升，说明自动规则不能替代人工修标。
+
+当前结论：保留自动修标脚本作为辅助工具，下一步继续人工修标。

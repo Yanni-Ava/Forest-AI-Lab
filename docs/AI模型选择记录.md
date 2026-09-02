@@ -8,6 +8,7 @@
 | Bootstrap tree segmentation | `EXP-20260902-BOOTSTRAP-TREE-SEG-V1` | 展示相对稳定，已接入 API | 是 |
 | Public tree segmentation Alpha | `EXP-20260902-PUBLIC-TREE-SEG-ALPHA` | 已完成训练，但测试指标偏低 | 暂不接入 |
 | Review subset tree segmentation Alpha | `EXP-20260902-REVIEW-SUBSET-TREE-SEG-ALPHA` | 筛选样本后指标提升，但测试集太小且仍为伪标注 | 暂不接入 |
+| Auto refined tree segmentation Alpha V0.2 | `EXP-20260902-AUTO-REFINED-TREE-SEG-ALPHA-V02` | 自动修标外观更干净，但测试指标未提升 | 暂不接入 |
 
 ## 当前选择
 
@@ -23,6 +24,7 @@ AI/runs/segment/EXP-20260902-BOOTSTRAP-TREE-SEG-V1/weights/best.pt
 2. Demo 展示更稳定。
 3. Public Alpha 模型虽然数据来源更丰富，但伪标注质量不足，测试指标偏低。
 4. Review subset 模型证明筛选样本有效，但还未达到稳定替换条件。
+5. Auto refined V0.2 不能替代人工修标，暂不作为主模型。
 
 ## 后续替换条件
 

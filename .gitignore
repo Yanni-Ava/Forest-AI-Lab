@@ -245,6 +245,13 @@ AI/datasets/vegetation_v2_public/labels/**/*
 !AI/datasets/vegetation_v2_public_review_subset/metadata.csv
 AI/datasets/vegetation_v2_public_review_subset/images/**/*
 AI/datasets/vegetation_v2_public_review_subset/labels/**/*
+!AI/datasets/vegetation_v2_public_auto_refined/
+!AI/datasets/vegetation_v2_public_auto_refined/**/
+!AI/datasets/vegetation_v2_public_auto_refined/README.md
+!AI/datasets/vegetation_v2_public_auto_refined/classes.txt
+!AI/datasets/vegetation_v2_public_auto_refined/metadata.csv
+AI/datasets/vegetation_v2_public_auto_refined/images/**/*
+AI/datasets/vegetation_v2_public_auto_refined/labels/**/*
 data/*.db
 data/*.db-journal
 data/*.log
