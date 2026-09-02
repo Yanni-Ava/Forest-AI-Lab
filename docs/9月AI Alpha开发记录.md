@@ -196,3 +196,9 @@ AI/datasets/vegetation_v2_public_human_corrected_v04
 数据集检查通过，并完成 `EXP-20260902-HUMAN-CORRECTED-TREE-SEG-ALPHA-V04` 分割训练。本轮测试集 Mask mAP50 约 0.335，但默认阈值预测不稳定，说明当前数据量和标注质量仍不足以替换 Demo 主模型。
 
 当前结论：V0.4 作为人工修标闭环验证保留，后续应继续扩充真实样本并进行人工逐点精修。
+
+## 2026-09-02 进展：campus_forest_v05 数据接收标准
+
+为承接数据模块后续提交的真实校园/森林图片，已建立 `campus_forest_v05` 数据集准备位，并补充数据接收与验收标准。
+
+该部分不替代数据同学的数据采集工作，而是由负责人提前定义 AI 训练所需的数据格式、命名规则、来源记录、质量要求和 train/val/test 划分方式，保证后续数据能直接进入 LabelMe 标注和 Alpha V0.5 训练。
