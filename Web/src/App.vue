@@ -13,8 +13,18 @@ type DetectionResponse = {
   height: number
   detection_count: number
   detections: Detection[]
+  vegetation?: {
+    method: string
+    coverage: number
+    coverage_pct: number
+    threshold: number
+    vegetation_pixels: number
+    total_pixels: number
+    note: string
+  }
   inference_ms: number
   result_url: string
+  vegetation_url?: string
 }
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '')
@@ -25,6 +35,7 @@ const selectedFile = ref<File | null>(null)
 const previewUrl = ref('')
 const result = ref<DetectionResponse | null>(null)
 const resultImageUrl = ref('')
+const vegetationImageUrl = ref('')
 const isDragging = ref(false)
 const isDetecting = ref(false)
 const serviceOnline = ref<boolean | null>(null)
@@ -62,6 +73,7 @@ function selectFile(file?: File) {
   errorMessage.value = ''
   result.value = null
   resultImageUrl.value = ''
+  vegetationImageUrl.value = ''
   if (!file) return
   if (!file.type.startsWith('image/')) {
     errorMessage.value = '请选择 JPG、PNG、BMP 或 WebP 图片。'
@@ -98,6 +110,7 @@ async function detectFile(file: File) {
   errorMessage.value = ''
   result.value = null
   resultImageUrl.value = ''
+  vegetationImageUrl.value = ''
   isDetecting.value = true
   const formData = new FormData()
   formData.append('file', file)
@@ -107,6 +120,7 @@ async function detectFile(file: File) {
     if (!response.ok) throw new Error(body.detail || '识别失败，请稍后重试。')
     result.value = body as DetectionResponse
     resultImageUrl.value = resolveResultUrl(result.value.result_url)
+    vegetationImageUrl.value = result.value.vegetation_url ? resolveResultUrl(result.value.vegetation_url) : ''
     serviceOnline.value = true
   } catch (error) {
     serviceOnline.value = false
@@ -176,6 +190,7 @@ function reset() {
   selectedFile.value = null
   result.value = null
   resultImageUrl.value = ''
+  vegetationImageUrl.value = ''
   errorMessage.value = ''
   clearPreview()
   if (fileInput.value) fileInput.value.value = ''
@@ -289,8 +304,17 @@ onBeforeUnmount(() => {
             <div class="result-image-wrap"><img :src="resultImageUrl" alt="带有识别框的结果图片" /></div>
             <div class="metrics">
               <div><strong>{{ result.detection_count }}</strong><span>识别目标</span></div>
+              <div><strong>{{ result.vegetation ? `${result.vegetation.coverage_pct.toFixed(1)}%` : '—' }}</strong><span>植被覆盖率</span></div>
               <div><strong>{{ result.inference_ms.toFixed(1) }}</strong><span>推理毫秒</span></div>
               <div><strong>{{ result.width }}×{{ result.height }}</strong><span>图片尺寸</span></div>
+            </div>
+            <div v-if="result.vegetation" class="vegetation-card">
+              <div>
+                <span>植被分析</span>
+                <strong>{{ result.vegetation.coverage_pct.toFixed(2) }}%</strong>
+              </div>
+              <p>{{ result.vegetation.method }}，用于 Alpha Demo 展示；正式论文指标后续使用真实标注数据重新计算。</p>
+              <a v-if="vegetationImageUrl" :href="vegetationImageUrl" target="_blank" rel="noopener">打开植被叠加图</a>
             </div>
             <div class="detection-list">
               <div v-for="item in groupedDetections" :key="item.name" class="detection-row">

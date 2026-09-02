@@ -14,6 +14,11 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from ultralytics import YOLO
 
+try:
+    from AI.vegetation_baseline import vegetation_mask
+except ImportError:
+    from vegetation_baseline import vegetation_mask
+
 
 AI_DIR = Path(__file__).resolve().parent
 TRAINED_SEGMENT_MODEL_PATH = (
@@ -214,6 +219,11 @@ async def detect(
             verbose=False,
         )[0]
 
+    mask, vegetation_threshold = vegetation_mask(image)
+    vegetation_pixels = int(np.count_nonzero(mask))
+    total_pixels = int(mask.size)
+    vegetation_coverage = vegetation_pixels / total_pixels
+
     detections: list[dict[str, object]] = []
     for box in result.boxes:
         class_id = int(box.cls.item())
@@ -232,6 +242,16 @@ async def detect(
     if not cv2.imwrite(str(result_path), result.plot()):
         raise HTTPException(status_code=500, detail="Failed to save the result image.")
 
+    overlay = image.copy()
+    green_layer = np.zeros_like(image)
+    green_layer[:, :, 1] = 255
+    blended = cv2.addWeighted(image, 0.55, green_layer, 0.45, 0)
+    overlay[mask > 0] = blended[mask > 0]
+    vegetation_filename = f"{uuid4().hex}_vegetation.jpg"
+    vegetation_path = RESULTS_DIR / vegetation_filename
+    if not cv2.imwrite(str(vegetation_path), overlay):
+        raise HTTPException(status_code=500, detail="Failed to save the vegetation overlay.")
+
     height, width = image.shape[:2]
     return {
         "filename": file.filename,
@@ -239,8 +259,18 @@ async def detect(
         "height": height,
         "detection_count": len(detections),
         "detections": detections,
+        "vegetation": {
+            "method": "RGB ExG + Otsu baseline",
+            "coverage": round(vegetation_coverage, 6),
+            "coverage_pct": round(vegetation_coverage * 100.0, 2),
+            "threshold": round(float(vegetation_threshold), 2),
+            "vegetation_pixels": vegetation_pixels,
+            "total_pixels": total_pixels,
+            "note": "Baseline estimate for demo; not NDVI and not formal paper metric.",
+        },
         "inference_ms": round(float(result.speed.get("inference", 0.0)), 2),
         "result_url": f"/results/{result_filename}",
+        "vegetation_url": f"/results/{vegetation_filename}",
     }
 
 

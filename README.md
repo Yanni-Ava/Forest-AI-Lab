@@ -17,6 +17,7 @@ AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录�
 - `docs/阶段验收记录_0815.md`：AI环境与基础视觉Demo验收。
 - `docs/阶段验收记录_0831.md`：8月图片识别流程与AI模块V1整合验收。
 - `docs/9月AI实验推进计划.md`：9月数据集、批量实验和模型优化计划。
+- `docs/9月AI Alpha开发记录.md`：9月 AI Alpha Demo 开发与联调记录。
 - `docs/Web展示主线说明_V0.1.md`：明确 Vue + FastAPI 为后续系统展示主线。
 - `STM32/docs/sensor_data_protocol_v0.1.md`：地面传感器模拟数据协议。
 - `AI/experiment_registry.csv`：实验总台账。
@@ -47,6 +48,8 @@ AI模块V1工具：
 进入网页后可选择“上传图片”或“使用摄像头”。摄像头模式需要允许浏览器访问摄像头，然后点击“识别当前画面”。
 
 本地如果存在 `AI/runs/segment/EXP-20260902-BOOTSTRAP-TREE-SEG-V1/weights/best.pt`，API 会优先使用这版 bootstrap 树木分割模型；如果不存在，则自动退回 `AI/weights/yolo26n.pt` 通用检测模型，保证 demo 仍可运行。
+
+当前 Alpha Demo 已在图片识别结果中加入 RGB 植被覆盖率估计，并返回植被叠加图地址。
 
 项目展示主线统一为 Vue + FastAPI。Streamlit 页面仅作为早期原型材料保留，不作为后续主线系统。
 

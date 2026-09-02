@@ -90,11 +90,18 @@ h2 { margin: 0; font-size: 20px; letter-spacing: -.025em; }
 .scan-frame svg { width: 46px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
 .result-image-wrap { position: relative; height: 335px; overflow: hidden; border-radius: 17px; background: #e8eee8; }
 .result-image-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: contain; }
-.metrics { display: grid; grid-template-columns: repeat(3, 1fr); margin: 16px 0; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); margin: 16px 0; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
 .metrics > div { padding: 13px 14px; display: flex; flex-direction: column; gap: 3px; }
 .metrics > div + div { border-left: 1px solid var(--line); }
 .metrics strong { color: var(--ink); font-size: 16px; }
 .metrics span { color: var(--muted); font-size: 10px; }
+.vegetation-card { display: grid; gap: 8px; margin: -4px 0 14px; padding: 14px; border: 1px solid rgba(23,107,77,.18); border-radius: 14px; background: linear-gradient(135deg, rgba(200,243,107,.2), rgba(255,255,255,.9)); }
+.vegetation-card > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.vegetation-card span { color: var(--forest); font-size: 12px; font-weight: 800; }
+.vegetation-card strong { color: var(--forest-dark); font-size: 24px; letter-spacing: -.04em; }
+.vegetation-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.vegetation-card a { width: fit-content; color: var(--forest); font-size: 12px; font-weight: 800; text-decoration: none; }
+.vegetation-card a:hover { text-decoration: underline; }
 .detection-list { display: flex; flex-direction: column; gap: 8px; }
 .detection-row { display: grid; grid-template-columns: minmax(110px, auto) minmax(60px, 1fr) 48px; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; background: #f3f6f2; font-size: 12px; }
 .detection-name { display: flex; align-items: center; gap: 7px; }
@@ -122,6 +129,7 @@ footer { min-height: 70px; display: flex; align-items: center; justify-content: 
   .panel { padding: 18px; border-radius: 19px; }
   .dropzone { height: 330px; }
   .preview-card img, .result-image-wrap { height: 280px; }
+  .metrics { grid-template-columns: repeat(2, 1fr); }
   .metrics strong { font-size: 13px; }
   footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 4px; }
 }
