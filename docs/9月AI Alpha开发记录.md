@@ -184,3 +184,15 @@ AI/annotation_tasks/vegetation_alpha_v04_labelme
 本轮生成 10 个修标任务文件，其中 train 6 个、val 3 个、test 1 个。后续人工修正 polygon 后，可通过 `AI/import_labelme_to_yolo.py` 导回 YOLO 数据集，并使用 `AI/config/vegetation_v2_public_human_corrected_v04.yaml` 训练 Alpha V0.4。
 
 当前结论：项目进入“人工修标—数据导回—模型再训练—指标对比”的模型优化闭环。
+
+## 2026-09-02 进展：Human Corrected Alpha V0.4
+
+已基于 LabelMe 修标任务生成机器辅助精修版数据集：
+
+```text
+AI/datasets/vegetation_v2_public_human_corrected_v04
+```
+
+数据集检查通过，并完成 `EXP-20260902-HUMAN-CORRECTED-TREE-SEG-ALPHA-V04` 分割训练。本轮测试集 Mask mAP50 约 0.335，但默认阈值预测不稳定，说明当前数据量和标注质量仍不足以替换 Demo 主模型。
+
+当前结论：V0.4 作为人工修标闭环验证保留，后续应继续扩充真实样本并进行人工逐点精修。

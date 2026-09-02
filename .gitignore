@@ -213,6 +213,7 @@ tempCodeRunnerFile.py
 AI/runs/
 runs/
 AI/weights/*.pt
+*.pt
 AI/input/public_forest_sources/
 AI/datasets/*
 !AI/datasets/README.md

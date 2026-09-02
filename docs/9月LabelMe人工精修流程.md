@@ -73,3 +73,14 @@ yolo segment train model=AI/weights/yolo26n.pt data=AI/config/vegetation_v2_publ
 ## 验收口径
 
 这一步的意义是：项目已经从“能跑通 Demo”进入“有数据闭环的模型优化阶段”。即使 V0.4 训练结果暂时不一定最好，也能证明项目具备持续优化能力，符合9月“AI Alpha版本开发与实验记录整理”的要求。
+
+## 2026-09-02 当前执行状态
+
+已完成一版机器辅助人工精修：
+
+- 10 个 LabelMe JSON 已完成辅助修正。
+- 已导回 `vegetation_v2_public_human_corrected_v04`。
+- 数据集检查通过。
+- 已完成 Alpha V0.4 分割训练。
+
+注意：该版本属于“辅助精修初版”，不是最终论文级人工标注。后续仍需继续补充真实图片，并进行人工逐点精修。
