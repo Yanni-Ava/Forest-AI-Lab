@@ -27,6 +27,16 @@ type DetectionResponse = {
   vegetation_url?: string
 }
 
+type ServiceHealth = {
+  status: string
+  model: string
+  model_kind: string
+  model_exists: boolean
+  confidence_threshold: string
+  image_size: string
+  device: string
+}
+
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '')
 const MAX_FILE_SIZE = 10 * 1024 * 1024
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -39,6 +49,7 @@ const vegetationImageUrl = ref('')
 const isDragging = ref(false)
 const isDetecting = ref(false)
 const serviceOnline = ref<boolean | null>(null)
+const serviceHealth = ref<ServiceHealth | null>(null)
 const errorMessage = ref('')
 const inputMode = ref<'upload' | 'camera'>('upload')
 const cameraStream = ref<MediaStream | null>(null)
@@ -99,9 +110,12 @@ function onDrop(event: DragEvent) {
 
 async function checkHealth() {
   try {
-    serviceOnline.value = (await fetch(apiEndpoint('/health'))).ok
+    const response = await fetch(apiEndpoint('/health'))
+    serviceOnline.value = response.ok
+    serviceHealth.value = response.ok ? ((await response.json()) as ServiceHealth) : null
   } catch {
     serviceOnline.value = false
+    serviceHealth.value = null
   }
 }
 
@@ -221,6 +235,11 @@ onBeforeUnmount(() => {
         <p class="eyebrow">YOLO26 · 本地智能识别</p>
         <h1>让每一张图片<br /><span>看得见，也看得懂。</span></h1>
         <p class="intro">上传一张图片，由本机视觉模型识别常见物体。图片不会离开这台电脑。</p>
+        <div v-if="serviceHealth" class="model-pill">
+          <span>当前模型</span>
+          <strong>{{ serviceHealth.model }}</strong>
+          <em>{{ serviceHealth.model_kind }}</em>
+        </div>
       </section>
 
       <section class="workspace">

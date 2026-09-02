@@ -40,6 +40,10 @@ main { flex: 1; }
 h1 { max-width: 840px; margin: 0; color: var(--ink); font-size: clamp(42px, 6.2vw, 82px); line-height: 1.02; letter-spacing: -.055em; }
 h1 span { color: var(--forest); }
 .intro { max-width: 580px; margin: 24px 0 0; color: var(--muted); font-size: 17px; line-height: 1.75; }
+.model-pill { width: fit-content; display: flex; align-items: center; gap: 10px; margin-top: 22px; padding: 9px 12px; border: 1px solid rgba(23,107,77,.18); border-radius: 999px; color: var(--forest-dark); background: rgba(255,255,255,.74); box-shadow: 0 10px 24px rgba(34,66,54,.06); }
+.model-pill span { color: var(--muted); font-size: 12px; font-weight: 700; }
+.model-pill strong { font-size: 13px; }
+.model-pill em { color: var(--forest); font-size: 11px; font-style: normal; font-weight: 800; }
 .workspace { display: grid; grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); gap: 20px; padding-bottom: 64px; }
 .panel { min-width: 0; min-height: 590px; padding: 26px; border: 1px solid rgba(20,50,42,.11); border-radius: 24px; background: rgba(251,252,248,.94); box-shadow: 0 22px 50px rgba(34,66,54,.08); }
 .panel-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
