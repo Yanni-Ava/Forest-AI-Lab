@@ -13,6 +13,8 @@
 | 图片质量 | 不严重模糊、过曝、过暗 | 待完成 |
 | 数据划分 | train/val/test 分开 | 待完成 |
 | 测试集独立 | test 不参与训练和调参 | 待完成 |
+| 接收检查 | `validate_campus_data_intake.py` 通过 | 待完成 |
+| 批量整理 | 可用 `prepare_campus_image_batch.py` 复现整理过程 | 待完成 |
 
 ## 二、标注验收
 

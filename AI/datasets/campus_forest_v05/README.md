@@ -50,6 +50,28 @@ python .\AI\dataset_check.py --data .\AI\config\campus_forest_v05.yaml
 
 届时应满足：无 errors，必要时只保留可解释的 warnings。
 
+在图片刚提交、还没有开始标注前，先运行数据接收检查：
+
+```powershell
+python .\AI\validate_campus_data_intake.py
+```
+
+该检查用于判断图片数量、命名、来源表和 train/val/test 划分是否达到 V0.5 数据接收要求。
+
+如果数据同学给的是一批乱命名图片，可以先预览整理方案：
+
+```powershell
+python .\AI\prepare_campus_image_batch.py "D:\某个图片文件夹"
+```
+
+确认数量和划分没问题后，再正式复制进数据集：
+
+```powershell
+python .\AI\prepare_campus_image_batch.py "D:\某个图片文件夹" --copy
+```
+
+该工具会自动重命名为 `CAMPUS_FOREST_0001.jpg` 这类格式，并按约 70/15/15 放入 train、val、test。
+
 ## 标注类别
 
 当前只做一个类别：

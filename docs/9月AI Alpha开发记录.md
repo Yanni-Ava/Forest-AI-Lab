@@ -202,3 +202,16 @@ AI/datasets/vegetation_v2_public_human_corrected_v04
 为承接数据模块后续提交的真实校园/森林图片，已建立 `campus_forest_v05` 数据集准备位，并补充数据接收与验收标准。
 
 该部分不替代数据同学的数据采集工作，而是由负责人提前定义 AI 训练所需的数据格式、命名规则、来源记录、质量要求和 train/val/test 划分方式，保证后续数据能直接进入 LabelMe 标注和 Alpha V0.5 训练。
+
+## 2026-09-03 进展：V0.5 数据接收工具化
+
+已将 `campus_forest_v05` 的数据接收标准工具化，新增：
+
+```text
+AI/prepare_campus_image_batch.py
+AI/validate_campus_data_intake.py
+```
+
+其中，`prepare_campus_image_batch.py` 用于将原始图片批量重命名、划分 train/val/test 并登记 metadata；`validate_campus_data_intake.py` 用于检查图片数量、命名、来源清单和划分比例是否达到 V0.5 数据接收要求。
+
+当前执行结果显示 `campus_forest_v05` 尚未接收真实图片，因此未通过数据接收检查是预期现象。该工具将在数据同学提交第一批真实图片后用于负责人验收。

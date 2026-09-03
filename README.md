@@ -30,6 +30,7 @@ AI阶段资料位于 `docs/`，包括环境配置、技术路线、实验记录�
 - `docs/9月负责人汇报口径.md`：面向老师/队友的阶段汇报话术。
 - `docs/9月后续执行周计划.md`：9月后续每周推进任务与验收产物。
 - `docs/Alpha_V0.5验收清单.md`：判断 Alpha V0.5 是否可替换 Demo 主模型的检查表。
+- `docs/evidence/0903_v05_data_intake_tools/README.md`：V0.5 数据接收工具测试记录。
 - `docs/experiments/EXP-20260902-AUTO-REFINED-TREE-SEG-ALPHA-V02.md`：自动修标 Alpha V0.2 训练实验记录。
 - `docs/experiments/EXP-20260902-HUMAN-REVIEWED-SEED-TREE-SEG-ALPHA-V03.md`：人工审核种子集 Alpha V0.3 训练实验记录。
 - `docs/experiments/EXP-20260902-HUMAN-CORRECTED-TREE-SEG-ALPHA-V04.md`：LabelMe 修标导回后的 Alpha V0.4 训练实验记录。
@@ -48,6 +49,8 @@ AI模块V1工具：
 - `AI/export_yolo_to_labelme.py`：将 YOLO 分割标注导出为 LabelMe 可人工编辑任务。
 - `AI/import_labelme_to_yolo.py`：将人工修正后的 LabelMe 标注导回 YOLO 训练集。
 - `AI/visualize_labelme_tasks.py`：生成 LabelMe 修标任务总览图，便于快速检查。
+- `AI/validate_campus_data_intake.py`：检查 V0.5 校园/森林图片接收质量、命名、来源表和划分比例。
+- `AI/prepare_campus_image_batch.py`：将原始图片批量重命名、划分并登记到 V0.5 数据集。
 - `AI/experiment_registry.csv`：实验总台账。
 
 ## 启动视觉 API
