@@ -111,6 +111,12 @@ python .\AI\evaluate_segmentation.py --model .\AI\runs\segment\EXP-YYYYMMDD-SEG-
 
 当前电脑使用CPU版PyTorch。正式训练建议换用NVIDIA GPU环境，并在实验记录中保存依赖、设备、随机种子和完整参数。
 
+## 校园 V0.5（2026-09-05）
+
+已用 50 张校园照片的辅助语义标签完成 40 轮植被分割试训练，网页可选择“校园 V0.5 训练模型（试验版）”。当前本机展示地址为 http://127.0.0.1:8001 。该模型估计照片中的可见植被，不表示学校绿地率或碳汇量。
+
+训练、指标、复现步骤及验收边界见 [V0.5 实验记录](docs/experiments/EXP-20260905-CAMPUS-V05.md)。软件自检：`python AI/check_alpha_acceptance.py`。权重和原图保留本地，GitHub 克隆不会自动包含已训练模型。
+
 ## 运行摄像头检测
 
 ```powershell

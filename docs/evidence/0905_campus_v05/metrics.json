@@ -1,0 +1,62 @@
+{
+  "created_at": "2026-09-05T09:52:43.133551+00:00",
+  "source": "D:\\桌面\\Be Myself\\证书预备役\\大创\\执行计划\\项目执行\\03 数据集\\已标注images\\china_school_annotated_v0.5",
+  "split_counts": {
+    "train_suggested": 35,
+    "validation_to_refine": 10,
+    "challenge_holdout": 5
+  },
+  "seed": 42,
+  "epochs": 40,
+  "size": 192,
+  "device": "cpu",
+  "architecture": "small U-Net from scratch",
+  "target": "visible vegetation: tree + low_vegetation + grass",
+  "ignore_index": 255,
+  "label_status": "model-assisted, AI-reviewed; NOT independent human ground truth",
+  "best_epoch": 38,
+  "validation": {
+    "network": {
+      "iou": 0.6842759578206378,
+      "dice": 0.8125461325305076,
+      "precision": 0.7247002238495367,
+      "recall": 0.9246264806686183,
+      "coverage_mae_percentage_points": 10.147610249081854,
+      "tp": 8864444,
+      "fp": 3367433,
+      "fn": 722610
+    },
+    "exg": {
+      "iou": 0.1988452854071549,
+      "dice": 0.33172801833161075,
+      "precision": 0.36051128984360864,
+      "recall": 0.30720104424153655,
+      "coverage_mae_percentage_points": 43.58573060419012,
+      "tp": 2945153,
+      "fp": 5224225,
+      "fn": 6641901
+    }
+  },
+  "holdout": {
+    "network": {
+      "iou": 0.5612623994120902,
+      "dice": 0.7189853539333805,
+      "precision": 0.6441843462234158,
+      "recall": 0.8134398722958842,
+      "coverage_mae_percentage_points": 15.226418876694618,
+      "tp": 3102310,
+      "fp": 1713563,
+      "fn": 711506
+    },
+    "exg": {
+      "iou": 0.25545221488255787,
+      "dice": 0.406948527159123,
+      "precision": 0.47314115497446896,
+      "recall": 0.3570035890562104,
+      "coverage_mae_percentage_points": 31.386336267492077,
+      "tp": 1361546,
+      "fp": 1516128,
+      "fn": 2452270
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "created_at": "2026-09-05T09:56:38.731953+00:00",
+  "checks": [
+    {
+      "name": "health and model weights",
+      "passed": true
+    },
+    {
+      "name": "V0.5 trained artifact available",
+      "passed": true
+    },
+    {
+      "name": "built Vue homepage served",
+      "passed": true
+    },
+    {
+      "name": "OpenAPI documentation",
+      "passed": true
+    },
+    {
+      "name": "empty isolated sensor database",
+      "passed": true
+    },
+    {
+      "name": "simulated sensor upload",
+      "passed": true
+    },
+    {
+      "name": "sensor persistence and filtering",
+      "passed": true
+    },
+    {
+      "name": "sensor history",
+      "passed": true
+    },
+    {
+      "name": "invalid sensor rejected",
+      "passed": true
+    },
+    {
+      "name": "text upload rejected",
+      "passed": true
+    },
+    {
+      "name": "corrupt upload rejected",
+      "passed": true
+    },
+    {
+      "name": "oversized upload rejected",
+      "passed": true
+    },
+    {
+      "name": "baseline PNG inference",
+      "passed": true
+    },
+    {
+      "name": "baseline valid coverage",
+      "passed": true
+    },
+    {
+      "name": "baseline result_url retrievable",
+      "passed": true
+    },
+    {
+      "name": "baseline vegetation_url retrievable",
+      "passed": true
+    },
+    {
+      "name": "campus_v05 PNG inference",
+      "passed": true
+    },
+    {
+      "name": "campus_v05 valid coverage",
+      "passed": true
+    },
+    {
+      "name": "campus_v05 result_url retrievable",
+      "passed": true
+    },
+    {
+      "name": "campus_v05 vegetation_url retrievable",
+      "passed": true
+    },
+    {
+      "name": "unknown analysis mode rejected",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "health": {
+    "status": "ok",
+    "model": "best.pt",
+    "model_path": "D:\\Forest-AI-Lab\\AI\\runs\\segment\\EXP-20260902-BOOTSTRAP-TREE-SEG-V1\\weights\\best.pt",
+    "model_kind": "bootstrap_tree_segmentation",
+    "model_exists": true,
+    "confidence_threshold": "0.005",
+    "image_size": "416",
+    "device": "cpu",
+    "campus_v05_available": true
+  },
+  "scope": "real local model inference, Vue static serving, API contracts; sensors simulated, no physical hardware or browser camera verified"
+}

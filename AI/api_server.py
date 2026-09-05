@@ -1,7 +1,9 @@
 from pathlib import Path
+import os
 import sqlite3
 from threading import Lock
-from typing import Annotated
+from typing import Annotated, Literal
+from time import perf_counter
 from datetime import datetime, timezone
 from uuid import uuid4
 
@@ -16,8 +18,10 @@ from ultralytics import YOLO
 
 try:
     from AI.vegetation_baseline import vegetation_mask
+    from AI.campus_v05 import load_model as load_campus_model, predict_mask, RUN as CAMPUS_RUN
 except ImportError:
     from vegetation_baseline import vegetation_mask
+    from campus_v05 import load_model as load_campus_model, predict_mask, RUN as CAMPUS_RUN
 
 
 AI_DIR = Path(__file__).resolve().parent
@@ -35,10 +39,10 @@ MODEL_KIND = "bootstrap_tree_segmentation" if MODEL_PATH == TRAINED_SEGMENT_MODE
 CONFIDENCE_THRESHOLD = 0.005 if MODEL_KIND == "bootstrap_tree_segmentation" else 0.25
 IMAGE_SIZE = 416 if MODEL_KIND == "bootstrap_tree_segmentation" else 640
 MAX_DETECTIONS = 20 if MODEL_KIND == "bootstrap_tree_segmentation" else 300
-RESULTS_DIR = AI_DIR / "runs" / "api"
+RESULTS_DIR = Path(os.environ.get("FOREST_RESULTS_DIR", str(AI_DIR / "runs" / "api")))
 WEB_DIST_DIR = AI_DIR.parent / "Web" / "dist"
 DATA_DIR = AI_DIR.parent / "data"
-DATABASE_PATH = DATA_DIR / "forest_ai.db"
+DATABASE_PATH = Path(os.environ.get("FOREST_DATABASE_PATH", str(DATA_DIR / "forest_ai.db")))
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024
 
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -67,6 +71,7 @@ app.mount("/results", StaticFiles(directory=str(RESULTS_DIR)), name="results")
 
 model = YOLO(str(MODEL_PATH))
 model_lock = Lock()
+campus_model = None
 
 
 class SensorReading(BaseModel):
@@ -188,6 +193,7 @@ def health() -> dict[str, str | bool]:
         "confidence_threshold": str(CONFIDENCE_THRESHOLD),
         "image_size": str(IMAGE_SIZE),
         "device": "cpu",
+        "campus_v05_available": (CAMPUS_RUN / "report.json").is_file() and (CAMPUS_RUN / "best.pt").is_file(),
     }
 
 
@@ -195,7 +201,11 @@ def health() -> dict[str, str | bool]:
 @app.post("/detect", include_in_schema=False)
 async def detect(
     file: Annotated[UploadFile, File(description="JPG, PNG, BMP, or WebP image")],
+    vegetation_method: Literal["baseline", "campus_v05"] = "baseline",
 ) -> dict[str, object]:
+    global campus_model
+    if vegetation_method == "campus_v05" and not (CAMPUS_RUN / "report.json").is_file():
+        raise HTTPException(status_code=503, detail="Campus V0.5 training has not completed.")
     if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(status_code=415, detail="Only image uploads are supported.")
 
@@ -219,7 +229,19 @@ async def detect(
             verbose=False,
         )[0]
 
-    mask, vegetation_threshold = vegetation_mask(image)
+    vegetation_start = perf_counter()
+    if vegetation_method == "campus_v05":
+        with model_lock:
+            if campus_model is None:
+                campus_model = load_campus_model()
+            net, size = campus_model
+            mask = predict_mask(net, image, size).astype(np.uint8) * 255
+        vegetation_threshold = 0.5
+        method_name = "Campus V0.5 trained vegetation segmentation (experimental)"
+    else:
+        mask, vegetation_threshold = vegetation_mask(image)
+        method_name = "RGB ExG + Otsu baseline"
+    vegetation_ms = (perf_counter() - vegetation_start) * 1000
     vegetation_pixels = int(np.count_nonzero(mask))
     total_pixels = int(mask.size)
     vegetation_coverage = vegetation_pixels / total_pixels
@@ -260,13 +282,15 @@ async def detect(
         "detection_count": len(detections),
         "detections": detections,
         "vegetation": {
-            "method": "RGB ExG + Otsu baseline",
+            "algorithm": vegetation_method,
+            "method": method_name,
+            "inference_ms": round(vegetation_ms, 2),
             "coverage": round(vegetation_coverage, 6),
             "coverage_pct": round(vegetation_coverage * 100.0, 2),
             "threshold": round(float(vegetation_threshold), 2),
             "vegetation_pixels": vegetation_pixels,
             "total_pixels": total_pixels,
-            "note": "Baseline estimate for demo; not NDVI and not formal paper metric.",
+            "note": "Visible image vegetation estimate; not campus green-area rate, NDVI or carbon storage. V0.5 uses assisted labels, not independent human ground truth.",
         },
         "inference_ms": round(float(result.speed.get("inference", 0.0)), 2),
         "result_url": f"/results/{result_filename}",

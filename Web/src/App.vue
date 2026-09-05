@@ -14,6 +14,7 @@ type DetectionResponse = {
   detection_count: number
   detections: Detection[]
   vegetation?: {
+    algorithm?: string
     method: string
     coverage: number
     coverage_pct: number
@@ -28,6 +29,7 @@ type DetectionResponse = {
 }
 
 type ServiceHealth = {
+  campus_v05_available?: boolean
   status: string
   model: string
   model_kind: string
@@ -42,6 +44,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024
 const fileInput = ref<HTMLInputElement | null>(null)
 const videoElement = ref<HTMLVideoElement | null>(null)
 const selectedFile = ref<File | null>(null)
+const vegetationMethod = ref<'baseline' | 'campus_v05'>('baseline')
 const previewUrl = ref('')
 const result = ref<DetectionResponse | null>(null)
 const resultImageUrl = ref('')
@@ -129,7 +132,7 @@ async function detectFile(file: File) {
   const formData = new FormData()
   formData.append('file', file)
   try {
-    const response = await fetch(apiEndpoint('/detect'), { method: 'POST', body: formData })
+    const response = await fetch(apiEndpoint(`/detect?vegetation_method=${vegetationMethod.value}`), { method: 'POST', body: formData })
     const body = await response.json()
     if (!response.ok) throw new Error(body.detail || '识别失败，请稍后重试。')
     result.value = body as DetectionResponse
@@ -137,7 +140,6 @@ async function detectFile(file: File) {
     vegetationImageUrl.value = result.value.vegetation_url ? resolveResultUrl(result.value.vegetation_url) : ''
     serviceOnline.value = true
   } catch (error) {
-    serviceOnline.value = false
     errorMessage.value = error instanceof Error ? error.message : '无法连接视觉服务。'
   } finally {
     isDetecting.value = false
@@ -288,6 +290,13 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
+          <label class="vegetation-card">
+            植被分析方式
+            <select v-model="vegetationMethod" :disabled="isDetecting">
+              <option value="baseline">颜色基线（原版）</option>
+              <option value="campus_v05" :disabled="!serviceHealth?.campus_v05_available">校园 V0.5 训练模型（试验版）</option>
+            </select>
+          </label>
           <p v-if="errorMessage" class="error-message" role="alert">{{ errorMessage }}</p>
           <button v-if="inputMode === 'upload'" class="primary-button" type="button" :disabled="!selectedFile || isDetecting || serviceOnline === false" @click="detectImage">
             <span v-if="isDetecting" class="spinner"></span>
@@ -320,9 +329,9 @@ onBeforeUnmount(() => {
           </div>
 
           <template v-else>
-            <div class="result-image-wrap"><img :src="resultImageUrl" alt="带有识别框的结果图片" /></div>
+            <div class="result-image-wrap"><img :src="result.vegetation?.algorithm === 'campus_v05' ? vegetationImageUrl : resultImageUrl" alt="所选算法的分析结果图片" /></div>
             <div class="metrics">
-              <div><strong>{{ result.detection_count }}</strong><span>识别目标</span></div>
+              <div><strong>{{ result.detection_count }}</strong><span>检测候选区（非株数）</span></div>
               <div><strong>{{ result.vegetation ? `${result.vegetation.coverage_pct.toFixed(1)}%` : '—' }}</strong><span>植被覆盖率</span></div>
               <div><strong>{{ result.inference_ms.toFixed(1) }}</strong><span>推理毫秒</span></div>
               <div><strong>{{ result.width }}×{{ result.height }}</strong><span>图片尺寸</span></div>
